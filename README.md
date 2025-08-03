@@ -1,7 +1,7 @@
 ```markdown
 # 📱 Parlons – Aprenda Francês com Facilidade! 🇫🇷
 
-Bem-vinde ao **Parlons**, um protótipo de aplicativo educacional desenvolvido com **React Native CLI**, voltado para o ensino do idioma francês!  
+Bem-vindo ao **Parlons**, um protótipo de aplicativo educacional desenvolvido com **React Native CLI**, voltado para o ensino do idioma francês!  
 Nosso objetivo é facilitar o aprendizado de forma leve, visual e interativa, com foco em vocabulário, frases úteis e contexto cultural. ✨
 
 ---
