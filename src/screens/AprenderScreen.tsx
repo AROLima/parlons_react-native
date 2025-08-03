@@ -1,23 +1,38 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import PrimaryButton from '../components/PrimaryButton';
-
 import { useNavigation } from '@react-navigation/native';
-import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { RootStackParamList } from '../navigation/types'; // <- o tipo global da stack
+import ProgressBar from '../components/ProgressBar';
+import type { StackNavigationProp } from '@react-navigation/stack';
 
-type NavigationProps = NativeStackNavigationProp<RootStackParamList, 'Aprender'>;
+type RootStackParamList = {
+  Licoes: undefined;
+  LessonDetail: { lessonId: string };
+};
 
 export default function AprenderScreen() {
-  const navigation = useNavigation<NavigationProps>();
+  const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
+
+  const completedLessons = 2;
+  const totalLessons = 5;
+  const progress = completedLessons / totalLessons;
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Tela de Aprendizado</Text>
-      <Text style={styles.subtitle}>Aqui começa sua jornada linguística!</Text>
+      <Text style={styles.title}>🎓 Sua Jornada</Text>
+      <Text style={styles.subtitle}>
+        Você concluiu {completedLessons} de {totalLessons} lições
+      </Text>
+
+      <ProgressBar progress={progress} />
 
       <PrimaryButton
-        title="Ir para Lições"
+        title="Continuar próxima lição"
+        onPress={() => navigation.navigate('LessonDetail', { lessonId: '3' })}
+      />
+
+      <PrimaryButton
+        title="Ver todas as lições"
         onPress={() => navigation.navigate('Licoes')}
       />
     </View>
@@ -27,19 +42,20 @@ export default function AprenderScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    padding: 24,
     justifyContent: 'center',
-    alignItems: 'center',
-    padding: 16,
+    backgroundColor: '#f9f9ff',
   },
   title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 12,
+    fontSize: 26,
+    fontWeight: '700',
+    marginBottom: 8,
+    textAlign: 'center',
   },
   subtitle: {
     fontSize: 16,
-    color: '#666',
-    marginBottom: 20,
+    color: '#555',
+    marginBottom: 16,
+    textAlign: 'center',
   },
 });

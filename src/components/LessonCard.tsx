@@ -1,36 +1,44 @@
 import React from 'react';
-import { TouchableOpacity, Text, StyleSheet, ViewStyle } from 'react-native';
+import { Text, StyleSheet, TouchableOpacity, View } from 'react-native';
 
-interface LessonCardProps {
+type Props = {
   title: string;
   level: string;
   onPress: () => void;
-  style?: ViewStyle;
-}
+};
 
-export default function LessonCard({ title, level, onPress, style }: LessonCardProps) {
+export default function LessonCard({ title, level, onPress }: Props) {
+  const backgroundColor = level === 'Iniciante' ? '#dbeafe' : '#ede9fe'; // azul claro / lilás
+
   return (
-    <TouchableOpacity style={[styles.card, style]} onPress={onPress}>
-      <Text style={styles.title}>{title}</Text>
-      <Text style={styles.level}>{level}</Text>
+    <TouchableOpacity style={[styles.card, { backgroundColor }]} onPress={onPress}>
+      <View>
+        <Text style={styles.title}>{title}</Text>
+        <Text style={styles.level}>{level}</Text>
+      </View>
     </TouchableOpacity>
   );
 }
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: '#e5e5e5',
+    borderRadius: 10,
     padding: 16,
-    borderRadius: 8,
     marginBottom: 12,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
   },
   title: {
-    fontSize: 16,
-    fontWeight: 'bold',
+    fontSize: 18,
+    fontWeight: '600',
+    color: '#1e293b',
   },
   level: {
     fontSize: 14,
-    color: '#666',
-    marginTop: 4,
+    color: '#475569',
+    marginTop: 6,
   },
 });
